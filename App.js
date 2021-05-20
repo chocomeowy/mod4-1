@@ -1,13 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,buttonPressed } from 'react-native';
+
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, TouchableOpacity,buttonPressed, ActivityIndicator } from 'react-native';
 
 export default function App() {
+const [loading, setLoading] = useState(true);
+
   return (
     <View style={styles.container}>
-      <Text>Bus arrival time:</Text>
-      <Text style={styles.loadingText}>Loading...</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.textHeader}>Bus arrival time:</Text>
+      <Text style={styles.loadingText}>{loading? <ActivityIndicator size ="large" />: "Loaded"}</Text>
       <TouchableOpacity onPress={buttonPressed}
                         style={styles.button}>
 
@@ -15,8 +16,6 @@ export default function App() {
           Refresh!
         </Text>
       </TouchableOpacity>
-
-      <StatusBar style="auto"/>
 
     </View>
   );
@@ -34,6 +33,10 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 10,
     marginTop: 20
+  },
+
+  textHeader: {
+    fontSize: 30
   },
 
   loadingText: {
